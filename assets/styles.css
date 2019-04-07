@@ -1,0 +1,24 @@
+* {
+  padding: 0;
+  margin: 0;
+}
+body {
+  font-family: Sans-serif;
+}
+.top-bar {
+  padding: 20px;
+  background: red;
+  color: #fff;
+  font-size: 2em;
+  font-weight: 700;
+  text-align: center;
+}
+
+.card {
+  box-shadow: 0 0 4px rgba(200, 200, 200, 0.5);
+  padding: 20px;
+  margin: 10px;
+  color: #888;
+  font-weight: 700;
+  font-size: 1.4em;
+}

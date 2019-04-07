@@ -1,0 +1,59 @@
+<html>
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="stylesheet" href="assets/styles.css" />
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/sw.js').then(
+            function(registration) {
+              // Registration was successful
+              console.log(
+                'ServiceWorker registration successful with scope: ',
+                registration.scope,
+              );
+            },
+            function(err) {
+              // registration failed :(
+              console.log('ServiceWorker registration failed: ', err);
+            },
+          );
+        });
+      }
+    </script>
+  </head>
+  <body>
+    <div id="app">
+      <header class="top-bar">LK News</header>
+
+      <ul>
+        <li class="card">test</li>
+        <li
+          class="card"
+          v-for="post in posts"
+          v-html="post.title.rendered"
+        ></li>
+      </ul>
+    </div>
+
+    <script>
+      const url = 'https://test.sbtravelsandtours.com/wp-json/wp/v2/posts';
+      var app = new Vue({
+        el: '#app',
+        data() {
+          return {
+            message: 'hellow world',
+            posts: [],
+          };
+        },
+        async mounted() {
+          const res = await fetch(url);
+          const result = await res.json();
+          console.log(result);
+          this.posts = result;
+        },
+      });
+    </script>
+  </body>
+</html>
